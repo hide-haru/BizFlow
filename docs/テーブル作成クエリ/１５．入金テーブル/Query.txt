@@ -1,0 +1,12 @@
+CREATE TABLE payments (
+  uniqueid UUID DEFAULT gen_random_uuid() NOT NULL,
+  payment_id SERIAL PRIMARY KEY NOT NULL,
+  invoice_id int REFERENCES invoices(invoice_id) NOT NULL,
+  payment_date date NOT NULL,
+  payment_amount numeric(12,2) NOT NULL,
+  payment_method_id int REFERENCES payment_mst(payment_method_id) NOT NULL,
+  reference_no int,
+  reconciled boolean DEFAULT false NOT NULL,
+  created_at timestamp,
+  updated_at timestamp
+);

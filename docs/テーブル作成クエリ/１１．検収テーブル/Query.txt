@@ -1,0 +1,12 @@
+CREATE TABLE deliveries (
+  uniqueid UUID DEFAULT gen_random_uuid() NOT NULL,
+  delivery_id SERIAL PRIMARY KEY NOT NULL,
+  contract_id int REFERENCES contracts(contract_id) NOT NULL,
+  delivery_no VARCHAR(50) UNIQUE NOT NULL,
+  delivery_date date NOT NULL,
+  delivery_type_id int REFERENCES delivery_mst(delivery_type_id) NOT NULL,
+  accepted boolean DEFAULT false NOT NULL,
+  attachment_url text,
+  created_at timestamp,
+  updated_at timestamp
+);

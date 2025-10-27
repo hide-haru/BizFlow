@@ -1,0 +1,17 @@
+CREATE TABLE quotations (
+  uniqueid UUID DEFAULT gen_random_uuid() NOT NULL,
+  quotation_id SERIAL PRIMARY KEY NOT NULL,
+  project_id int REFERENCES projects(project_id) NOT NULL,
+  quotation_no VARCHAR(50) UNIQUE NOT NULL,
+  quotation_date date NOT NULL,
+  valid_until date NOT NULL,
+  payment_terms_id int REFERENCES quotation_mst(payment_terms_id) NOT NULL,
+  subtotal numeric(12,2) NOT NULL,
+  tax numeric(12,2) NOT NULL,
+  total_amount numeric(12,2) NOT NULL,
+  remarks text,
+  approved boolean DEFAULT false NOT NULL,
+  attachment_url text,
+  created_at timestamp,
+  updated_at timestamp
+);

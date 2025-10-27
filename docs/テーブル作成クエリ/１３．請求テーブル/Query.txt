@@ -1,0 +1,15 @@
+CREATE TABLE invoices (
+  uniqueid UUID DEFAULT gen_random_uuid() NOT NULL,
+  invoice_id SERIAL PRIMARY KEY NOT NULL,
+  contract_id int REFERENCES contracts(contract_id) NOT NULL,
+  invoice_no VARCHAR(50) UNIQUE NOT NULL,
+  invoice_date date NOT NULL,
+  closing_date date NOT NULL,
+  payment_due date NOT NULL,
+  amount numeric(12,2) NOT NULL,
+  billing_email text,
+  invoice_status_id int REFERENCES invoice_mst(invoice_status_id) NOT NULL,
+  attachment_url text,
+  created_at timestamp,
+  updated_at timestamp
+);

@@ -1,0 +1,13 @@
+CREATE TABLE contracts (
+  uniqueid UUID DEFAULT gen_random_uuid() NOT NULL,
+  contract_id SERIAL PRIMARY KEY NOT NULL,
+  project_id int REFERENCES projects(project_id) NOT NULL,
+  contract_no VARCHAR(50) UNIQUE NOT NULL,
+  contract_date date NOT NULL,
+  contract_type_id int REFERENCES contract_mst(contract_type_id) NOT NULL,
+  contract_amount numeric(12,2) NOT NULL,
+  delivery_due date NOT NULL,
+  attachment_url text,
+  created_at timestamp,
+  updated_at timestamp
+);

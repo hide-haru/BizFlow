@@ -1,0 +1,7 @@
+CREATE TABLE profiles (
+  uniqueid UUID DEFAULT gen_random_uuid() NOT NULL,
+  auth_id uuid PRIMARY KEY REFERENCES auth.users(id) NOT NULL,
+  user_name VARCHAR(100) NOT NULL,
+  is_deleted BOOLEAN DEFAULT false NOT NULL,
+  created_at TIMESTAMP DEFAULT now()
+);
